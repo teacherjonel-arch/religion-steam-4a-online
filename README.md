@@ -24,3 +24,6 @@ Después de actualizar GitHub, Render debe desplegar el nuevo commit. Si no lo h
 Comandos:
 - Build: `npm install`
 - Start: `npm start`
+
+
+V3: corregida la pantalla de sala para que, una vez conectado el WebSocket, aparezcan Crear sala / Unirse. Se mantiene sincronización de estado y de preguntas/modales para todos los jugadores.

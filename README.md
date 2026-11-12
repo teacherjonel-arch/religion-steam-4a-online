@@ -1,29 +1,32 @@
-# Religion STEAM 4.º A — Online (2–4 jugadores)
+# Expediente Bellemer — Página web para GitHub Pages
 
-Versión corregida para GitHub + Render.
+Juego de comprensión lectora basado en *El faro de la mujer ausente* de David Fernández Sifres, hasta la página 38. Dirigido a 22 alumnos con dos tablets y una laptop del docente.
 
-## Archivos
-- `public/index.html` — juego y cliente online.
-- `server.js` — servidor HTTP + WebSocket.
-- `package.json` — dependencia `ws` y comando de inicio.
-- `render.yaml` — configuración para Render.
+## Publicar gratis en GitHub Pages
 
-## Corrección principal
-La sincronización online usa ahora el estado compartido correctamente, sin anidarlo dos veces. Al iniciar la partida, todos reciben una base común y cada cambio guardado se transmite a los demás jugadores.
+1. Inicia sesión en github.com y crea un repositorio **público** llamado `expediente-bellemer`.
+2. Sube **index.html**, **styles.css** y **app.js** a la raíz del repositorio.
+3. En **Settings → Pages → Build and deployment**, selecciona **Deploy from a branch**, branch **main**, carpeta **/(root)** y pulsa **Save**.
+4. GitHub mostrará la URL de tu sitio cuando termine la publicación: `https://TUUSUARIO.github.io/expediente-bellemer/`.
+5. Abre esa URL en tu laptop y en las dos tablets. Elige **Soy docente** en la laptop y crea una sala. En las tablets elige **Entrar como equipo**, introduce el código y selecciona equipo.
 
-## GitHub
-Reemplaza en el repositorio existente:
-- `public/index.html`
-- `server.js`
+### Distribución
+- Tablet 1: equipo 1 y luego equipo 3.
+- Tablet 2: equipo 2 y luego equipo 4.
+- Laptop: panel docente conectado durante toda la clase.
 
-No es necesario volver a crear el repositorio.
+### Sobre la sincronización
 
-## Render
-Después de actualizar GitHub, Render debe desplegar el nuevo commit. Si no lo hace automáticamente, usa **Manual Deploy → Deploy latest commit**.
+GitHub Pages solo aloja archivos estáticos. Para comunicar las tablets con la laptop, el juego utiliza PeerJS mediante servidores públicos de conexión y WebRTC. La laptop actúa como anfitriona, mantiene la sala y guarda el progreso en **su navegador**. La conexión depende de los navegadores, la red y la disponibilidad del servidor público PeerJS; en algunas redes escolares puede estar bloqueada.
 
-Comandos:
-- Build: `npm install`
-- Start: `npm start`
+Si se recarga una tablet puede volver a entrar con el mismo código. La laptop debe permanecer con el juego abierto. Si se cierra la laptop o el navegador docente, las tablets dejan de guardar respuestas hasta que el docente vuelva a abrir la sala guardada. Los datos no se respaldan en la nube: usa siempre la misma laptop y navegador para retomar la sesión.
 
+No se recopilan nombres ni cuentas de los estudiantes. El código de sala no es una contraseña de seguridad; úsalo solo dentro del contexto de aula y evita compartirlo públicamente.
 
-V3: corregida la pantalla de sala para que, una vez conectado el WebSocket, aparezcan Crear sala / Unirse. Se mantiene sincronización de estado y de preguntas/modales para todos los jugadores.
+### Puntuación
+
+8 preguntas cerradas de 10 puntos cada una + 2 argumentos abiertos calificados por el docente (0–10 cada uno) = 100 puntos. Al pulsar **Revelar resultados** se muestra el marcador final y las alternativas correctas.
+
+### Personalización
+
+Las preguntas del libro están en `app.js`. Se pueden ajustar desde GitHub mediante la interfaz web; cada cambio del repositorio se publica de nuevo por GitHub Pages.
